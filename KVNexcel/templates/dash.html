@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>User Dashboard</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .wrapper {
+      display: flex;
+      width: 100%;
+    }
+    #sidebar {
+      min-width: 250px;
+      max-width: 250px;
+      background: #343a40;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    #sidebar .list-group-item {
+      background-color: #343a40;
+      color: #fff;
+    }
+    #sidebar .list-group-item:hover {
+      background-color: #495057;
+    }
+    #content {
+      width: 100%;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" class="bg-dark">
+    <div class="sidebar-header p-3">
+      <h4>Dashboard</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><a href="#">Home</a></li>
+      <li class="list-group-item"><a href="{% url 'Dashboard'%}">Profile</a></li>
+      <li class="list-group-item"><a href="#">Settings</a></li>
+      <li class="list-group-item"><a href="{% url 'task_list'%}">Availabe Tasks</a></li>
+      <li class="list-group-item"><a href="{% url 'user_tasks'%}">Task Status</a></li>
+      <li class="list-group-item"><a href="#">Messages</a></li>
+      <li class="list-group-item"><a href="{% url 'Logout' %}">Logout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn btn-dark">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h5 class="ml-3">{{request.user.first_name}} {{request.user.last_name}} </h5>
+      </div>
+    </nav>
+
+    <div class="container">
+      <h2>Hello, {{ request.user.first_name }}!</h2>
+      <p>This is your dashboard. You can manage your profile, settings, and messages from here.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
+  });
+</script>
+
+</body>
+</html>
